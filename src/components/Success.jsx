@@ -33,7 +33,7 @@ const Success = ({ token, setToken }) => {
 
   return (
     <div>
-      <h1>Success Works!</h1>
+      <h1>Select a Song</h1>
       <Search token={token} />
     </div>
   );

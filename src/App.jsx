@@ -7,9 +7,8 @@ import LoginButton from "./components/LoginButton";
 function App() {
   const [token, setToken] = useState(null);
 
-
   let clientId = "8b34a109eb1244189620da8eba0cafd8";
-  let clientSecret = "aea148762ac543ba86f0255128b4b264"; 
+  let clientSecret = "aea148762ac543ba86f0255128b4b264";
 
   useEffect(() => {
     const authOptions = {
@@ -25,7 +24,7 @@ function App() {
       .then((response) => response.json())
       .then((data) => {
         if (data.access_token) {
-          setToken(data.access_token)
+          setToken(data.access_token);
         }
       })
       .catch((error) => {
@@ -34,16 +33,16 @@ function App() {
   }, []);
 
   useEffect(() => {
-    setToken(token)
-  }, [token])
+    setToken(token);
+  }, [token]);
 
-  console.log(token)
+  console.log(token);
 
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/success" element={<Success token={token}/>} />
+        <Route path="/success" element={<Success token={token} />} />
       </Routes>
     </Router>
   );
@@ -52,8 +51,12 @@ function App() {
 function Home() {
   return (
     <>
-      <div>This is the Home page</div>
-      <LoginButton />
+      <h1>Welcome to AudioSight!</h1>
+      <div>Please login to proceed to app.</div>
+      <br></br>
+      <button>
+        <LoginButton />
+      </button>
     </>
   );
 }
