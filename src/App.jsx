@@ -45,7 +45,7 @@ function App() {
       <Routes>
         {/* Define your routes here */}
         <Route path="/" element={<Home />} />
-        <Route path="/success" element={<Success artistData={artistData} token={token}/>} />
+        <Route path="/success" element={<Success token={token}/>} />
       </Routes>
     </Router>
   );
