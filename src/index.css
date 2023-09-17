@@ -59,6 +59,10 @@ ul {
   list-style: none;
 }
 
+li:hover {
+  color: #1bdc1b;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
