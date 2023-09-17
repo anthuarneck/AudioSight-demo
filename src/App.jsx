@@ -5,39 +5,59 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Success from "./components/Success";
 import LoginButton from "./components/LoginButton";
 
-
-var client_id = "8b34a109eb1244189620da8eba0cafd8";
-var redirect_uri = "http://localhost:5173/success";
-
-console.log(getToken())
-
 function App() {
+  const [artistData, setArtistData] = useState(null);
+  const [token, setToken] = useState(null);
 
-const [artistData, setArtistData] = useState(null)
+  const clientId = "8b34a109eb1244189620da8eba0cafd8";
+  const clientSecret = "aea148762ac543ba86f0255128b4b264";
 
-useEffect(() => {
-  fetch("https://api.spotify.com/v1/artists/3wcj11K77LjEY1PkEazffa", {
-    headers: {
-      Authorization:
-        "Bearer BQDSi2cqSj3_tmObrD_Rjytl4wSX4LHc4qaljjsOKtpn7AyqL9ADYmwtUqyVJ8kJUYwNdpLXUFjLEbnvWvJ79eTlkblCLNPeIgvhdeEuEpUK4esw938", //Access token
-    },
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      setArtistData(data);
+  useEffect(() => {
+    const authOptions = {
+      method: "POST",
+      headers: {
+        Authorization: "Basic " + btoa(clientId + ":" + clientSecret),
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: "grant_type=client_credentials",
+    };
+
+    fetch("https://accounts.spotify.com/api/token", authOptions)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.access_token) {
+          setToken(data.access_token);
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  console.log(token);
+
+  useEffect(() => {
+    fetch("https://api.spotify.com/v1/artists/3wcj11K77LjEY1PkEazffa", {
+      headers: {
+        Authorization: `Bearer ${token}}`,
+      },
     })
-    .catch((err) => {
-      console.error(err);
-    });
-}, [])
+      .then((res) => res.json())
+      .then((data) => {
+        setArtistData(data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, []);
 
+  console.log(artistData)
 
   return (
     <Router>
       <Routes>
-        {/* Define your routes here */}
         <Route path="/" element={<Home />} />
-        <Route path="/success" element={<Success artistData={artistData}/>} />
+        <Route path="/success" element={<Success artistData={artistData} />} />
       </Routes>
     </Router>
   );
