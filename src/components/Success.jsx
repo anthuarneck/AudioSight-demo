@@ -1,4 +1,5 @@
 import React from "react";
+import { useState, useEffect } from "react";
 
 // fetch(`https://api.spotify.com/v1/search?q=${title}&type=track`, {
 //   method: 'GET',
