@@ -1,24 +1,28 @@
 import { useEffect, useState } from "react";
 
 const Search = ({ token }) => {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [selectedTrack, setSelectedTrack] = useState(null);
-console.log(selectedTrack)
+  console.log(selectedTrack);
   const handleSearch = () => {
-    fetch(`https://api.spotify.com/v1/search?q=%5${searchQuery}&type=track&limit=10`, {
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${token}`
+    fetch(
+      `https://api.spotify.com/v1/search?q=%5${searchQuery}&type=track&limit=10`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       }
-    })
-    .then(response => response.json())
-    .then(data => {
-      setSearchResults(data.tracks.items);
-    })
-    .catch(error => {
-      console.error(error);
-    });
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        setSearchResults(data.tracks.items);
+        setSearchQuery('')
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   const handleTrackClick = (track) => {
@@ -33,7 +37,7 @@ console.log(selectedTrack)
           type="text"
           placeholder="Enter song title"
           value={searchQuery}
-          onChange={e => setSearchQuery(e.target.value)}
+          onChange={(e) => setSearchQuery(e.target.value)}
         />
         <button onClick={handleSearch}>Search</button>
       </div>
@@ -49,13 +53,13 @@ console.log(selectedTrack)
       {selectedTrack && (
         <div>
           <h3>Selected Track</h3>
-          <p>{selectedTrack.name} by {selectedTrack.artists[0].name}</p>
+          <p>
+            {selectedTrack.name} by {selectedTrack.artists[0].name}
+          </p>
         </div>
       )}
     </div>
   );
-  
-
 };
 
 export default Search;
