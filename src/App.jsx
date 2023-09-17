@@ -6,11 +6,11 @@ import Success from "./components/Success";
 import LoginButton from "./components/LoginButton";
 
 function App() {
-  const [artistData, setArtistData] = useState(null);
   const [token, setToken] = useState(null);
 
-  const clientId = "8b34a109eb1244189620da8eba0cafd8";
-  const clientSecret = "aea148762ac543ba86f0255128b4b264";
+
+  let clientId = "8b34a109eb1244189620da8eba0cafd8";
+  let clientSecret = "aea148762ac543ba86f0255128b4b264"; 
 
   useEffect(() => {
     const authOptions = {
@@ -26,7 +26,7 @@ function App() {
       .then((response) => response.json())
       .then((data) => {
         if (data.access_token) {
-          setToken(data.access_token);
+          setToken(data.access_token)
         }
       })
       .catch((error) => {
@@ -34,30 +34,18 @@ function App() {
       });
   }, []);
 
-  console.log(token);
-
   useEffect(() => {
-    fetch("https://api.spotify.com/v1/artists/3wcj11K77LjEY1PkEazffa", {
-      headers: {
-        Authorization: `Bearer ${token}}`,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setArtistData(data);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }, []);
+    setToken(token)
+  }, [token])
 
-  console.log(artistData)
+  console.log(token)
 
   return (
     <Router>
       <Routes>
+        {/* Define your routes here */}
         <Route path="/" element={<Home />} />
-        <Route path="/success" element={<Success artistData={artistData} />} />
+        <Route path="/success" element={<Success artistData={artistData} token={token}/>} />
       </Routes>
     </Router>
   );
