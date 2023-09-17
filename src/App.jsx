@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-import { getToken } from "../fetch";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Success from "./components/Success";
 import LoginButton from "./components/LoginButton";
@@ -43,7 +42,6 @@ function App() {
   return (
     <Router>
       <Routes>
-        {/* Define your routes here */}
         <Route path="/" element={<Home />} />
         <Route path="/success" element={<Success token={token}/>} />
       </Routes>

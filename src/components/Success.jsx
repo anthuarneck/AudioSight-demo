@@ -1,32 +1,17 @@
 import React from "react";
 import { useState, useEffect } from "react";
-
-// fetch(`https://api.spotify.com/v1/search?q=${title}&type=track`, {
-//   method: 'GET',
-//   headers: {
-//     'Authorization': `Bearer ${token}`
-//   }
-// })
-//   .then(response => response.json())
-//   .then(data => {
-//     console.log(data);
-//   })
-//   .catch(error => {
-//     // Handle any errors
-//     console.error(error);
-//   });
-
+import Search from "./Search";
 
 const Success = ({ token, setToken }) => {
 
   const [artistData, setArtistData] = useState(null);
 
   console.log(token) 
- 
+
   useEffect(() => {
     fetch("https://api.spotify.com/v1/artists/3wcj11K77LjEY1PkEazffa", {
       headers: {
-        Authorization: `Bearer BQCoxO6qwCdqO-AZqcdI54nr1KD1LFkIfIEt_GqNofaxpPfWchOfwOiXfni6Gr7IEl8sqzKuemC_TSMNCQasjNQgCLaYlBilr-Ztkj447eVZTpyPv-U`,
+        Authorization: `Bearer ${token}`,
       },
     })
       .then((res) => res.json())
@@ -49,7 +34,7 @@ const Success = ({ token, setToken }) => {
   return (
     <div>
       <h1>Success Works!</h1>
-      <p>{artistData.name}</p>
+      <Search token={token} />
     </div>
   );
 };
