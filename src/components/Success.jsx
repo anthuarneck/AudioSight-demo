@@ -75,25 +75,29 @@ const Success = ({ token, setToken }) => {
   }, [token, hasExchanged]);
 
   useEffect(() => {
-    fetch("https://api.spotify.com/v1/me/player/currently-playing", {
-    method: "GET",
-    headers: {
-        'Authorization': `Bearer ${token}`
+    if (token && hasExchanged) {
+      fetch("https://api.spotify.com/v1/me/player/currently-playing", {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then((response) => {
+          if (!response.ok) {
+            return response.json().then((err) => {
+              throw err;
+            });
+          }
+          return response.json();
+        })
+        .then((data) => {
+          console.log(data);
+        })
+        .catch((error) => {
+          console.error("Error fetching currently playing:", error);
+        });
     }
-})
-.then(response => {
-    if (!response.ok) {
-        return response.json().then(err => { throw err; });
-    }
-    return response.json();
-})
-.then(data => {
-    console.log(data);
-})
-.catch(error => {
-    console.error("Error fetching currently playing:", error);
-});
-  })
+  }, [token, hasExchanged]);
 
   return (
     <div>
