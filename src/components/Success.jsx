@@ -8,6 +8,15 @@ const Success = ({ token, setToken }) => {
   const [selectedTrack, setSelectedTrack] = useState(null);
 
   useEffect(() => {
+    document.body.style.backgroundImage = 'url("/marcela-laskoski-YrtFlrLo2DQ-unsplash.jpg")';
+    document.body.style.backgroundSize = 'cover';
+    document.body.style.backgroundRepeat = 'no-repeat';
+    return () => {
+      document.body.style.backgroundImage = '';
+    };
+  }, []);
+
+  useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const authCode = urlParams.get("code");
 

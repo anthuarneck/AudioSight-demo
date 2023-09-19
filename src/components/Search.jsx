@@ -39,7 +39,7 @@ const Search = ({ token, selectedTrack, setSelectedTrack }) => {
           placeholder="Enter song title"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-        />
+        /><br></br>
         <button onClick={handleSearch}>Search</button>
       </div>
       <div>
