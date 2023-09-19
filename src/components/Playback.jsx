@@ -1,6 +1,15 @@
 import React, { useEffect } from "react";
 
 const Playback = ({ token }) => {
+
+    useEffect(() => {
+        const script = document.createElement("script");
+        script.src = "https://sdk.scdn.co/spotify-player.js";
+        script.onload = () => {
+        };
+        document.body.appendChild(script);
+      }, []);
+      
   useEffect(() => {
     if (window.Spotify) {
       window.onSpotifyWebPlaybackSDKReady = () => {
