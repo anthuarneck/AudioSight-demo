@@ -52,22 +52,31 @@ const Playback = ({ token, selectedTrack }) => {
     }
   };
 
-  const id = selectedTrack.id;
-  const playSpecificTrack = (id) => {
+  const playSpecificTrack = (uri) => {
     if (playerInstance) {
       playerInstance._options.getOAuthToken((token) => {
         fetch(
-          "https://api.spotify.com/v1/me/player/play?device_id=" +
-            playerInstance._options.id,
+          `https://api.spotify.com/v1/me/player/play?device_id=${playerInstance._options.id}`,
           {
             method: "PUT",
-            body: JSON.stringify({ uris: [id] }),
+            body: JSON.stringify({ uris: [uri] }),
             headers: {
               "Content-Type": "application/json",
               Authorization: `Bearer ${token}`,
             },
           }
-        );
+        )
+          .then((response) => {
+            if (!response.ok) {
+              return response.json().then((err) => {
+                throw new Error(err.error.message);
+              });
+            }
+            return response.json();
+          })
+          .catch((error) => {
+            console.error("Error playing the track:", error);
+          });
       });
     }
   };
