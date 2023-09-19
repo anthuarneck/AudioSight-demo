@@ -42,7 +42,7 @@
 }
 
 body {
-  background-image: url('public/marcela-laskoski-YrtFlrLo2DQ-unsplash.jpg');
+  background-image: url('/marcela-laskoski-YrtFlrLo2DQ-unsplash.jpg');
   background-size: cover; 
   height: 100vh;
 }
