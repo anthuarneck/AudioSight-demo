@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 
 const Success = ({ token, setToken }) => {
   const [hasExchanged, setHasExchanged] = useState(false);
+  const [selectedTrack, setSelectedTrack] = useState(null);
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -44,68 +45,68 @@ const Success = ({ token, setToken }) => {
     }
   }, []);
 
-  const playOptions = {
-    context_uri: "spotify:album:6kgDkAupBVRSqbJPUaTJwQ?si=575eb9fb015d4c9d",
-    offset: {
-      position: 5,
-    },
-    position_ms: 0,
-  };
+  // const playOptions = {
+  //   context_uri: "spotify:album:6kgDkAupBVRSqbJPUaTJwQ?si=575eb9fb015d4c9d",
+  //   offset: {
+  //     position: 5,
+  //   },
+  //   position_ms: 0,
+  // };
 
-  useEffect(() => {
-    if (token && hasExchanged) {
-      fetch("https://api.spotify.com/v1/me/player/play", {
-        method: "PUT",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(playOptions),
-      })
-        .then((response) => {
-          if (!response.ok) {
-            return response.json().then((err) => {
-              throw err;
-            });
-          }
-        })
-        .catch((error) => {
-          console.error("Error sending play command:", error);
-        });
-    }
-  }, [token, hasExchanged]);
+  // useEffect(() => {
+  //   if (token && hasExchanged) {
+  //     fetch("https://api.spotify.com/v1/me/player/play", {
+  //       method: "PUT",
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(playOptions),
+  //     })
+  //       .then((response) => {
+  //         if (!response.ok) {
+  //           return response.json().then((err) => {
+  //             throw err;
+  //           });
+  //         }
+  //       })
+  //       .catch((error) => {
+  //         console.error("Error sending play command:", error);
+  //       });
+  //   }
+  // }, [token, hasExchanged]);
 
-  useEffect(() => {
-    if (token && hasExchanged) {
-      fetch("https://api.spotify.com/v1/me/player/currently-playing", {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-        .then(response => {
-          if (!response.ok) {
-            return response.json().then(err => { throw err; });
-          }
-          return response.text();
-        })
-        .then(text => {
-          return text ? JSON.parse(text) : {};
-        })
-        .then(data => {
-          console.log(data);
-        })
-        .catch(error => {
-          console.error("Error fetching currently playing:", error);
-        });
-    }
-  }, [token, hasExchanged]);
+  // useEffect(() => {
+  //   if (token && hasExchanged) {
+  //     fetch("https://api.spotify.com/v1/me/player/currently-playing", {
+  //       method: "GET",
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     })
+  //       .then(response => {
+  //         if (!response.ok) {
+  //           return response.json().then(err => { throw err; });
+  //         }
+  //         return response.text();
+  //       })
+  //       .then(text => {
+  //         return text ? JSON.parse(text) : {};
+  //       })
+  //       .then(data => {
+  //         console.log(data);
+  //       })
+  //       .catch(error => {
+  //         console.error("Error fetching currently playing:", error);
+  //       });
+  //   }
+  // }, [token, hasExchanged]);
 
   return (
     <div>
       <h1>Select a Song</h1>
-      <Search token={token} />
-      <Playback token={token}/>
+      <Search token={token} selectedTrack={selectedTrack} />
+      <Playback token={token} selectedTrack={selectedTrack}/>
     </div>
   );
 };

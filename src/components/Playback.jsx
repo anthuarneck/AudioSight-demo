@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const Playback = ({ token }) => {
+const Playback = ({ token, selectedTrack }) => {
   const [playerInstance, setPlayerInstance] = useState(null);
 
   useEffect(() => {
@@ -54,11 +54,23 @@ const Playback = ({ token }) => {
 
   return (
     <div>
-      <button id="togglePlay" onClick={togglePlayback}>
-        Toggle Play
-      </button>
+        <button id="togglePlay" onClick={togglePlayback}>
+            Toggle Play
+        </button>
+        <button onClick={() => playSpecificTrack(`spotify:track:${selectedTrack.id}`)}>
+            Play Specific Track
+        </button>
+        <button onClick={skipToNext}>
+            Skip to Next
+        </button>
+        <button onClick={skipToPrevious}>
+            Skip to Previous
+        </button>
+        <button onClick={pausePlayback}>
+            Pause
+        </button>
     </div>
-  );
+);
 };
 
 export default Playback;
