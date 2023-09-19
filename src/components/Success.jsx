@@ -68,7 +68,7 @@ const Success = ({ token, setToken }) => {
     .catch(error => {
       console.error("Error sending play command:", error);
     });
-  }, [setHasExchanged()]);
+  }, [setHasExchanged]);
 
 
   return (
