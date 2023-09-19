@@ -105,7 +105,7 @@ const Success = ({ token, setToken }) => {
   return (
     <div>
       <h1>Select a Song</h1>
-      <Search token={token} selectedTrack={selectedTrack} />
+      <Search token={token} selectedTrack={selectedTrack} setSelectedTrack={setSelectedTrack}/>
       <Playback token={token} selectedTrack={selectedTrack}/>
     </div>
   );
