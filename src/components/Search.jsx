@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const Search = ({ token, selectedTrack }) => {
+const Search = ({ token, selectedTrack, setSelectedTrack }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
 
