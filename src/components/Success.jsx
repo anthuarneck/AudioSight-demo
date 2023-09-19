@@ -82,18 +82,19 @@ const Success = ({ token, setToken }) => {
           Authorization: `Bearer ${token}`,
         },
       })
-        .then((response) => {
+        .then(response => {
           if (!response.ok) {
-            return response.json().then((err) => {
-              throw err;
-            });
+            return response.json().then(err => { throw err; });
           }
-          return response.json();
+          return response.text();
         })
-        .then((data) => {
+        .then(text => {
+          return text ? JSON.parse(text) : {};
+        })
+        .then(data => {
           console.log(data);
         })
-        .catch((error) => {
+        .catch(error => {
           console.error("Error fetching currently playing:", error);
         });
     }
