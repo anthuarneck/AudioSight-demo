@@ -4,7 +4,6 @@ const Search = ({ token, selectedTrack, setSelectedTrack }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
 
-
   console.log(selectedTrack);
 
   const handleSearch = () => {
@@ -30,7 +29,6 @@ const Search = ({ token, selectedTrack, setSelectedTrack }) => {
   const handleTrackClick = (track) => {
     setSelectedTrack(track);
   };
-
 
   return (
     <div>
