@@ -29,6 +29,7 @@ const Playback = ({ token, selectedTrack }) => {
       });
       player.addListener("ready", ({ device_id }) => {
         console.log("Ready with Device ID", device_id);
+        player._options.id = device_id;
       });
 
       player.connect();
@@ -54,6 +55,7 @@ const Playback = ({ token, selectedTrack }) => {
 
   const playSpecificTrack = (uri) => {
     if (playerInstance) {
+        console.log("Player options:", playerInstance._options);
       playerInstance._options.getOAuthToken((token) => {
         fetch(
           `https://api.spotify.com/v1/me/player/play?device_id=${playerInstance._options.id}`,
