@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 
-const Search = ({ token }) => {
+const Search = ({ token, selectedTrack, setSelectedTrack }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const [selectedTrack, setSelectedTrack] = useState(null);
 
   console.log(selectedTrack);
 
@@ -30,7 +29,6 @@ const Search = ({ token }) => {
   const handleTrackClick = (track) => {
     setSelectedTrack(track);
   };
-
 
   return (
     <div>
