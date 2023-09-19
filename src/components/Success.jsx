@@ -8,7 +8,7 @@ const Success = ({ token, setToken }) => {
   const [selectedTrack, setSelectedTrack] = useState(null);
 
   useEffect(() => {
-    document.body.style.backgroundImage = 'url("/marcela-laskoski-YrtFlrLo2DQ-unsplash.jpg")';
+    document.body.style.backgroundImage = 'url("/adrien-olichon-RCAhiGJsUUE-unsplash.jpg")';
     document.body.style.backgroundSize = 'cover';
     document.body.style.backgroundRepeat = 'no-repeat';
     return () => {
