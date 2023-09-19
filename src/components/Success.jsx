@@ -1,5 +1,6 @@
 import React from "react";
 import Search from "./Search";
+import Playback from "./Playback";
 import { useEffect, useState } from "react";
 
 const Success = ({ token, setToken }) => {
@@ -104,6 +105,7 @@ const Success = ({ token, setToken }) => {
     <div>
       <h1>Select a Song</h1>
       <Search token={token} />
+      <Playback token={token}/>
     </div>
   );
 };
