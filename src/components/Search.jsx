@@ -8,7 +8,7 @@ const Search = ({ token, selectedTrack, setSelectedTrack }) => {
 
   const handleSearch = () => {
     fetch(
-      `https://api.spotify.com/v1/search?q=%5${searchQuery}&type=track&limit=10`,
+      `https://api.spotify.com/v1/search?q=%5${searchQuery}&type=album%2Ctrack%2Cartist&limit=10`,
       {
         method: "GET",
         headers: {
