@@ -42,33 +42,37 @@ const Success = ({ token, setToken }) => {
         });
     }
   }, []);
- 
+
   const playOptions = {
     context_uri: "spotify:album:6kgDkAupBVRSqbJPUaTJwQ?si=575eb9fb015d4c9d",
     offset: {
-      position: 5
+      position: 5,
     },
-    position_ms: 0
+    position_ms: 0,
   };
 
   useEffect(() => {
-    fetch("https://api.spotify.com/v1/me/player/play", {
-      method: "PUT",
-      headers: {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(playOptions)
-    })
-    .then(response => {
-      if (!response.ok) {
-        return response.json().then(err => { throw err; });
-      }
-    })
-    .catch(error => {
-      console.error("Error sending play command:", error);
-    });
-  }, [token]);
+    if (token && hasExchanged) {
+      fetch("https://api.spotify.com/v1/me/player/play", {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(playOptions),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            return response.json().then((err) => {
+              throw err;
+            });
+          }
+        })
+        .catch((error) => {
+          console.error("Error sending play command:", error);
+        });
+    }
+  }, [token, hasExchanged]);
 
   return (
     <div>
