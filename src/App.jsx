@@ -22,14 +22,14 @@ function App() {
 
 function Home() {
   return (
-    <>
+    <div className="homeBackground">
       <h1>Welcome to AudioSight!</h1>
-      <div>Please login to proceed to app.</div>
-      <br></br>
+      <h3>Please login to proceed to app.</h3>
+
       <button>
         <LoginButton />
       </button>
-    </>
+    </div>
   );
 }
 

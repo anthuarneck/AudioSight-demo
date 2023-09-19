@@ -40,3 +40,10 @@
 .read-the-docs {
   color: #888;
 }
+
+body {
+  background-image: url('public/marcela-laskoski-YrtFlrLo2DQ-unsplash.jpg');
+  background-size: cover; 
+  height: 100vh;
+}
+
