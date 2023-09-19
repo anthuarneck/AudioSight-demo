@@ -43,29 +43,32 @@ const Success = ({ token, setToken }) => {
     }
   }, []);
 
+  const playOptions = {
+    context_uri: "spotify:album:5ht7ItJgpBH7W6vJ5BqpPr",
+    offset: {
+      position: 5
+    },
+    position_ms: 0
+  };
+
   useEffect(() => {
-    fetch("https://api.spotify.com/v1/me/top/artists", {
-      method: "GET",
+    fetch("https://api.spotify.com/v1/me/player/play", {
+      method: "PUT",
       headers: {
-        Authorization: `Bearer ${token}`,
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
       },
+      body: JSON.stringify(playOptions)
     })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          return response.json().then((err) => {
-            throw err;
-          });
-        }
-      })
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((error) => {
-        console.error("Error fetching top artists:", error);
-      });
-  }, []);
+    .then(response => {
+      if (!response.ok) {
+        return response.json().then(err => { throw err; });
+      }
+    })
+    .catch(error => {
+      console.error("Error sending play command:", error);
+    });
+  }, [Search]);
 
 
   return (
