@@ -20,7 +20,18 @@ function App() {
   );
 }
 
+
 function Home() {
+
+  useEffect(() => {
+    document.body.style.backgroundImage = 'url("/marcela-laskoski-YrtFlrLo2DQ-unsplash.jpg")';
+    document.body.style.backgroundSize = 'cover';
+    document.body.style.backgroundRepeat = 'no-repeat';
+    return () => {
+      document.body.style.backgroundImage = '';
+    };
+  }, []);
+
   return (
     <div className="homeBackground">
       <h1>Welcome to AudioSight!</h1>
