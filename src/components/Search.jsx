@@ -4,7 +4,9 @@ const Search = ({ token }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [selectedTrack, setSelectedTrack] = useState(null);
+
   console.log(selectedTrack);
+
   const handleSearch = () => {
     fetch(
       `https://api.spotify.com/v1/search?q=%5${searchQuery}&type=track&limit=10`,
@@ -18,7 +20,7 @@ const Search = ({ token }) => {
       .then((response) => response.json())
       .then((data) => {
         setSearchResults(data.tracks.items);
-        setSearchQuery('')
+        setSearchQuery("");
       })
       .catch((error) => {
         console.error(error);
@@ -28,6 +30,7 @@ const Search = ({ token }) => {
   const handleTrackClick = (track) => {
     setSelectedTrack(track);
   };
+
 
   return (
     <div>

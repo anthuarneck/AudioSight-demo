@@ -1,10 +1,21 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 
 const LoginButton = () => {
-    const loginUrl = 'https://accounts.spotify.com/authorize?response_type=code&client_id=8b34a109eb1244189620da8eba0cafd8&redirect_uri=https://audiosightdemo.netlify.app/success';
+  const [loginUrl, setLoginUrl] = useState("#");
 
-  return <Link to={loginUrl}>Login</Link>;
+  useEffect(() => {
+    fetch(
+      "https://us-central1-audiosight-a265d.cloudfunctions.net/spotifyLogin"
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        if (data && data.loginUrl) {
+          setLoginUrl(data.loginUrl);
+        }
+      });
+  }, []);
+
+  return <a href={loginUrl}>Login</a>;
 };
 
 export default LoginButton;
