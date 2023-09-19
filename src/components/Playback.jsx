@@ -92,7 +92,7 @@ const Playback = ({ token, selectedTrack }) => {
       <button
         onClick={() => playSpecificTrack(`spotify:track:${selectedTrack.id}`)}
       >
-        Play Specific Track
+        Play Selected Track
       </button>
     </div>
   );
