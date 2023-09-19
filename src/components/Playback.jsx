@@ -83,29 +83,6 @@ const Playback = ({ token, selectedTrack }) => {
     }
   };
 
-  const skipToNext = () => {
-    if (playerInstance) {
-      playerInstance.nextTrack().then(() => {
-        console.log("Skipped to next track!");
-      });
-    }
-  };
-
-  const skipToPrevious = () => {
-    if (playerInstance) {
-      playerInstance.previousTrack().then(() => {
-        console.log("Skipped to previous track!");
-      });
-    }
-  };
-
-  const pausePlayback = () => {
-    if (playerInstance) {
-      playerInstance.pause().then(() => {
-        console.log("Paused playback!");
-      });
-    }
-  };
 
   return (
     <div>
@@ -117,9 +94,6 @@ const Playback = ({ token, selectedTrack }) => {
       >
         Play Specific Track
       </button>
-      <button onClick={skipToNext}>Skip to Next</button>
-      <button onClick={skipToPrevious}>Skip to Previous</button>
-      <button onClick={pausePlayback}>Pause</button>
     </div>
   );
 };
