@@ -32,11 +32,9 @@ const Success = ({ token, setToken }) => {
           })
         )
         .then((data) => {
-          console.log(data);
           if (data.access_token) {
             setHasExchanged(true);
             setToken(data.access_token);
-            console.log(token);
           }
         })
         .catch((error) => {
@@ -68,7 +66,7 @@ const Success = ({ token, setToken }) => {
         console.error("Error fetching top artists:", error);
       });
   }, []);
-  
+
 
   return (
     <div>
