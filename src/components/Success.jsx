@@ -42,9 +42,9 @@ const Success = ({ token, setToken }) => {
         });
     }
   }, []);
-
+ 
   const playOptions = {
-    context_uri: "spotify:album:5ht7ItJgpBH7W6vJ5BqpPr",
+    context_uri: "spotify:album:6kgDkAupBVRSqbJPUaTJwQ?si=575eb9fb015d4c9d",
     offset: {
       position: 5
     },
