@@ -40,11 +40,9 @@ export default function VisualizerCont({ token }) {
     updateSong();
   }, []);
 
-  return Object.entries(song).length ? (
+  return (
     <>
       <Visualizer song={song} updateSong={updateSong}></Visualizer>
     </>
-  ) : (
-    <></>
   );
 }
