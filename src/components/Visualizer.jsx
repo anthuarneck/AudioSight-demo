@@ -2,7 +2,10 @@ import React from "react";
 import Sketch from "react-p5";
 
 export const Visualizer = ({
-  song
+  song: {
+    analysis: { segments, sections },
+    track: { album },
+  },
 }) => {
   let changing = false;
   let segment = 0;
@@ -15,11 +18,11 @@ export const Visualizer = ({
   let color = 1913270;
   let img;
   let cnv7;
-  // const preload = () => {
-  //   img = p5.loadImage(album.images[0].url);
-  // };
+  const preload = () => {
+    img = p5.loadImage(album.images[0].url);
+  };
   const setup = (p5, canvasParentRef) => {
-    console.log(song)
+    console.log(song);
     color = p5.color(p5.random(255), p5.random(255), p5.random(255));
     p5.createCanvas(p5.windowWidth, p5.windowHeight);
     for (let i = 0; i < 12; i++) {

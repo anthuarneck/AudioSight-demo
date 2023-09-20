@@ -1,34 +1,36 @@
 import { Visualizer } from "./Visualizer";
 import { useEffect, useState } from "react";
-export default function VisualizerCont({ token, seletedTrack, setSelectedTrack }) {
+export default function VisualizerCont({
+  token,
+  selectedTrack,
+  setSelectedTrack,
+}) {
   let [song, setSong] = useState({});
-  let c;
+  let c = selectedTrack;
   const updateSong = () => {
-    fetch("https://api.spotify.com/v1/me/player/currently-playing", {
-      method:"GET",
+    debugger;
+    fetch(`https://api.spotify.com/v1/audio-analysis/${c.id}`, {
       headers: {
         Authorization: `Bearer  ${token}`,
       },
     })
       .then((response) => response.json)
       .then((json) => {
-        c = json;
-        
-        return fetch(
-          `https://api.spotify.com/v1/audio-analysis/${c.item.id}`
-        );
-      })
-      .then((response) => response.json)
-      .then((json) => {
         setSong({ ...song, analysis: { ...json } });
-        return fetch(`https://api.spotify.com/v1/tracks/${c.item.id}`);
+        return fetch(`https://api.spotify.com/v1/tracks/${c.id}`, {
+          headers: {
+            Authorization: `Bearer  ${token}`,
+          },
+        });
       })
       .then((response) => response.json)
       .then((json) => {
         setSong({ ...song, track: { ...json } });
-        return fetch(
-          `https://api.spotify.com/v1/audio-features/${c.item.id}`
-        );
+        return fetch(`https://api.spotify.com/v1/audio-features/${c.id}`, {
+          headers: {
+            Authorization: `Bearer  ${token}`,
+          },
+        });
       })
       .then((response) => response.json)
       .then((json) => {
@@ -37,9 +39,9 @@ export default function VisualizerCont({ token, seletedTrack, setSelectedTrack }
   };
 
   useEffect(() => {
-    console.log(seletedTrack)
+    console.log(selectedTrack);
     updateSong();
-  }, [seletedTrack]);
+  }, [selectedTrack]);
 
   return (
     <>
