@@ -2,10 +2,7 @@ import React from "react";
 import Sketch from "react-p5";
 
 export const Visualizer = ({
-  song: {
-    analysis: { sections, segments },
-    track: { album, name },
-  },
+  song
 }) => {
   let changing = false;
   let segment = 0;
