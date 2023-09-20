@@ -2,10 +2,7 @@ import React from "react";
 import Sketch from "react-p5";
 
 export const Visualizer = ({
-  song: {
-    analysis: { segments, sections },
-    track: { album },
-  },
+  song
 }) => {
   let changing = false;
   let segment = 0;
@@ -18,9 +15,9 @@ export const Visualizer = ({
   let color = 1913270;
   let img;
   let cnv7;
-  const preload = () => {
-    img = p5.loadImage(album.images[0].url);
-  };
+  // const preload = () => {
+  //   img = p5.loadImage(album.images[0].url);
+  // };
   const setup = (p5, canvasParentRef) => {
     console.log(song);
     color = p5.color(p5.random(255), p5.random(255), p5.random(255));
@@ -28,7 +25,7 @@ export const Visualizer = ({
     for (let i = 0; i < 12; i++) {
       pitchVals[i] = 0;
     }
-    cnv7 = createGraphics(img.width, img.height);
+    // cnv7 = p5.createGraphics(img.width, img.height);
   };
   const draw = (p5) => {
     p5.rectMode(p5.CORNER);
@@ -42,11 +39,11 @@ export const Visualizer = ({
     p5.rect(0, 0, p5.width, p5.height);
     m = p5.millis() / 1000;
     p5.ellipse(p5.mouseX, p5.mouseY, p5.map(vol, -60, 0, 200, 100));
-    cnv7.ellipse(p5.width / 2, p5.height / 2, p5.map(vol, -60, 0, 200, 100));
-    cnv7.canvas.getContext("2d").clip();
-    cnv7.image(img, 0, 0);
+    // cnv7.ellipse(p5.width / 2, p5.height / 2, p5.map(vol, -60, 0, 200, 100));
+    // cnv7.canvas.getContext("2d").clip();
+    // cnv7.image(img, 0, 0);
     p5.rectMode(p5.CENTER);
-    p5.image(cnv7, p5.width / 2, p5.height / 2);
+    // p5.image(cnv7, p5.width / 2, p5.height / 2);
     p5.textAlign(p5.CENTER, p5.CENTER);
     p5.text(name, p5.width / 2, p5.height / 2);
     for (let i = 0; i < 12; i++) {
@@ -62,7 +59,7 @@ export const Visualizer = ({
         pitchVals[i] -= 0.005;
       }
     }
-    p5.image(img, p5.width / 2, p5.height / 2);
+    // p5.image(img, p5.width / 2, p5.height / 2);
     if (changing) {
       changing = false;
     } else {
@@ -111,7 +108,7 @@ export const Visualizer = ({
   };
   return (
     <Sketch
-      preload={preload}
+      // preload={preload}
       setup={setup}
       draw={draw}
       windowResized={windowResized}

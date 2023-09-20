@@ -6,9 +6,9 @@ export default function VisualizerCont({
   setSelectedTrack,
 }) {
   let [song, setSong] = useState({});
-  let c = selectedTrack;
   const updateSong = () => {
-    debugger;
+    let c = selectedTrack;
+    console.log(c);
     fetch(`https://api.spotify.com/v1/audio-analysis/${c.id}`, {
       headers: {
         Authorization: `Bearer  ${token}`,
@@ -40,12 +40,17 @@ export default function VisualizerCont({
 
   useEffect(() => {
     console.log(selectedTrack);
-    updateSong();
+    if (selectedTrack) {
+      updateSong();
+      console.log(song)
+    }
   }, [selectedTrack]);
 
-  return (
+  return selectedTrack ? (
     <>
-      <Visualizer song={song} updateSong={updateSong}></Visualizer>
+      <Visualizer song={song} updateSong={updateSong} />
     </>
+  ) : (
+    <></>
   );
 }
