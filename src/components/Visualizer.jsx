@@ -22,6 +22,7 @@ export const Visualizer = ({
     img = p5.loadImage(album.images[0].url);
   };
   const setup = (p5, canvasParentRef) => {
+    console.log(song)
     color = p5.color(p5.random(255), p5.random(255), p5.random(255));
     p5.createCanvas(p5.windowWidth, p5.windowHeight);
     for (let i = 0; i < 12; i++) {
