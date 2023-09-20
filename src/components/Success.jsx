@@ -2,6 +2,7 @@ import React from "react";
 import Search from "./Search";
 import Playback from "./Playback";
 import { useEffect, useState } from "react";
+import VisualizerCont from "./VisualizerCont";
 
 const Success = ({ token, setToken }) => {
   const [hasExchanged, setHasExchanged] = useState(false);
@@ -56,13 +57,14 @@ const Success = ({ token, setToken }) => {
 
   return (
     <div>
-      <h1>Select a Song</h1>
+      <h1>AudioSight</h1>
       <Search
         token={token}
         selectedTrack={selectedTrack}
         setSelectedTrack={setSelectedTrack}
       />
       <Playback token={token} selectedTrack={selectedTrack} />
+      <VisualizerCont token={token}/>
     </div>
   );
 };

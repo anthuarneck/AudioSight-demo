@@ -2,29 +2,32 @@ import { Visualizer } from "./Visualizer";
 import { useEffect, useState } from "react";
 export default function VisualizerCont({ token }) {
   let [song, setSong] = useState({});
+  let c;
   const updateSong = () => {
     fetch("https://api.spotify.com/v1/me/player/currently-playing", {
+      method:"GET",
       headers: {
         Authorization: `Bearer  ${token}`,
       },
     })
       .then((response) => response.json)
       .then((json) => {
-        current = json;
+        c = json;
+        
         return fetch(
-          `https://api.spotify.com/v1/audio-analysis/${current.item.id}`
+          `https://api.spotify.com/v1/audio-analysis/${c.item.id}`
         );
       })
       .then((response) => response.json)
       .then((json) => {
         setSong({ ...song, analysis: { ...json } });
-        return fetch(`https://api.spotify.com/v1/tracks/${current.item.id}`);
+        return fetch(`https://api.spotify.com/v1/tracks/${c.item.id}`);
       })
       .then((response) => response.json)
       .then((json) => {
         setSong({ ...song, track: { ...json } });
         return fetch(
-          `https://api.spotify.com/v1/audio-features/${current.item.id}`
+          `https://api.spotify.com/v1/audio-features/${c.item.id}`
         );
       })
       .then((response) => response.json)
@@ -32,7 +35,7 @@ export default function VisualizerCont({ token }) {
         setSong({ ...song, features: { ...json } });
       });
   };
-  let current;
+
   useEffect(() => {
     updateSong();
   }, []);

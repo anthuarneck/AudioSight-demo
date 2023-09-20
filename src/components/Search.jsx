@@ -40,7 +40,7 @@ const Search = ({ token, selectedTrack, setSelectedTrack }) => {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         /><br></br>
-        <button onClick={handleSearch}>Search</button>
+        <button onClick={handleSearch}><span>Search</span></button>
       </div>
       <div>
         <ul>
