@@ -16,7 +16,7 @@ export default function VisualizerCont({
     })
       .then((response) => response.json)
       .then((json) => {
-        setSong({ ...song, analysis: { ...json } });
+        setSong((previous) => ({ ...previous, analysis: json }));
         return fetch(`https://api.spotify.com/v1/tracks/${c.id}`, {
           headers: {
             Authorization: `Bearer  ${token}`,
@@ -25,7 +25,7 @@ export default function VisualizerCont({
       })
       .then((response) => response.json)
       .then((json) => {
-        setSong({ ...song, track: { ...json } });
+        setSong((previous) => ({ ...previous, track: json }));
         return fetch(`https://api.spotify.com/v1/audio-features/${c.id}`, {
           headers: {
             Authorization: `Bearer  ${token}`,
@@ -34,7 +34,7 @@ export default function VisualizerCont({
       })
       .then((response) => response.json)
       .then((json) => {
-        setSong({ ...song, features: { ...json } });
+        setSong((previous) => ({ ...previous, features: json }));
       });
   };
 
@@ -42,7 +42,7 @@ export default function VisualizerCont({
     console.log(selectedTrack);
     if (selectedTrack) {
       updateSong();
-      console.log(song)
+      console.log(song);
     }
   }, [selectedTrack]);
 

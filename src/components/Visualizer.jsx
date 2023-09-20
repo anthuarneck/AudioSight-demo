@@ -2,7 +2,10 @@ import React from "react";
 import Sketch from "react-p5";
 
 export const Visualizer = ({
-  song
+  song: {
+    analysis: { segments, sections },
+    track: { album, duration },
+  },
 }) => {
   let changing = false;
   let segment = 0;
@@ -63,7 +66,7 @@ export const Visualizer = ({
     if (changing) {
       changing = false;
     } else {
-      if (p5.millis() <= song.track.duration * 1000) {
+      if (p5.millis() <= duration * 1000) {
         updateGraphics(p5);
       } else {
         updateSong();
