@@ -1,6 +1,6 @@
 import { Visualizer } from "./Visualizer";
 import { useEffect, useState } from "react";
-export default function VisualizerCont({ token }) {
+export default function VisualizerCont({ token, seletedTrack, setSelectedTrack }) {
   let [song, setSong] = useState({});
   let c;
   const updateSong = () => {
@@ -37,8 +37,9 @@ export default function VisualizerCont({ token }) {
   };
 
   useEffect(() => {
+    console.log(seletedTrack)
     updateSong();
-  }, []);
+  }, [seletedTrack]);
 
   return (
     <>

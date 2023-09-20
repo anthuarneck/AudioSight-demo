@@ -4,8 +4,6 @@ const Search = ({ token, selectedTrack, setSelectedTrack }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
 
-  console.log(selectedTrack);
-
   const handleSearch = () => {
     fetch(
       `https://api.spotify.com/v1/search?q=%5${searchQuery}&type=album%2Ctrack%2Cartist&limit=10`,
