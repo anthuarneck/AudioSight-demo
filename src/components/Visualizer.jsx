@@ -15,9 +15,9 @@ export const Visualizer = ({
   let color = 1913270;
   let img;
   let cnv7;
-  const preload = () => {
-    img = p5.loadImage(album.images[0].url);
-  };
+  // const preload = () => {
+  //   img = p5.loadImage(album.images[0].url);
+  // };
   const setup = (p5, canvasParentRef) => {
     console.log(song)
     color = p5.color(p5.random(255), p5.random(255), p5.random(255));
