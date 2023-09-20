@@ -1,12 +1,7 @@
 import React from "react";
 import Sketch from "react-p5";
 
-export const Visualizer = ({
-  song: {
-    analysis: { segments, sections },
-    track: { album, duration },
-  },
-}) => {
+export const Visualizer = ({ song }) => {
   let changing = false;
   let segment = 0;
   let section = 0;
@@ -78,25 +73,35 @@ export const Visualizer = ({
   };
 
   const updateGraphics = (p5) => {
-    for (let i = section; i < sections.length; i++) {
-      if (m > sections[i].start + sections[i].duration) {
+    for (
+      let i = song.analysis.section;
+      i < song.analysis.sections.length;
+      i++
+    ) {
+      if (
+        m >
+        song.analysis.sections[i].start + song.analysis.sections[i].duration
+      ) {
         changing = true;
         section += 1;
         color = p5.color(p5.random(255), p5.random(255), p5.random(255));
         break;
       }
     }
-    for (let i = segment; i < segments.length; i++) {
-      if (m > segments[i].start + segments[i].duration) {
+    for (let i = segment; i < song.analysis.segments.length; i++) {
+      if (
+        m >
+        song.analysis.segments[i].start + song.analysis.segments[i].duration
+      ) {
         changing = true;
         segment += 1;
         for (let pitchI = 0; pitchI < pitchVals.length; pitchI++) {
-          if (pitchVals[pitchI] < segments[i].pitches[pitchI]) {
-            pitchVals[pitchI] = segments[i].pitches[pitchI];
+          if (pitchVals[pitchI] < song.analysis.segments[i].pitches[pitchI]) {
+            pitchVals[pitchI] = song.analysis.segments[i].pitches[pitchI];
           }
         }
-        if (vol > segments[i].loudness_start) {
-          vol = segments[i].loudness_start;
+        if (vol > song.analysis.segments[i].loudness_start) {
+          vol = song.analysis.segments[i].loudness_start;
         }
         break;
       }
