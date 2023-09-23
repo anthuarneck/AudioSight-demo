@@ -6,7 +6,7 @@ export default function VisualizerCont({
   setSelectedTrack,
 }) {
   let [song, setSong] = useState({});
-  let temp;
+  let temp = {};
   const updateSong = () => {
     let c = selectedTrack;
     console.log(c);
@@ -15,7 +15,7 @@ export default function VisualizerCont({
         Authorization: `Bearer  ${token}`,
       },
     })
-      .then((response) => response.json)
+      .then((response) => response.json())
       .then((json) => {
         temp = { ...temp, analysis: json };
         console.log(temp);
@@ -25,7 +25,7 @@ export default function VisualizerCont({
           },
         });
       })
-      .then((response) => response.json)
+      .then((response) => response.json())
       .then((json) => {
         let temp = { ...temp, track: json };
         console.log(temp);
@@ -35,7 +35,7 @@ export default function VisualizerCont({
           },
         });
       })
-      .then((response) => response.json)
+      .then((response) => response.json())
       .then((json) => {
         let temp = { ...temp, features: json };
         console.log(temp);
@@ -53,7 +53,7 @@ export default function VisualizerCont({
 
   return selectedTrack ? (
     <>
-      <Visualizer song={song} updateSong={updateSong} />
+      <Visualizer song={temp} updateSong={updateSong} />
     </>
   ) : (
     <></>

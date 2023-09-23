@@ -64,7 +64,7 @@ const Success = ({ token, setToken }) => {
         setSelectedTrack={setSelectedTrack}
       />
       <Playback token={token} selectedTrack={selectedTrack} />
-      <VisualizerCont token={token} selectedTrack={selectedTrack} setSelectedTrack={setHasExchanged}/>
+      <VisualizerCont token={token} selectedTrack={selectedTrack} setSelectedTrack={setSelectedTrack}/>
     </div>
   );
 };

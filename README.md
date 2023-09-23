@@ -15,3 +15,5 @@ Welcome to AudioSight, the ultimate musical experience powered by Spotify!
 ## Dive In!
 Whether you're looking to discover new songs, enjoy your favorites, or get lost in a world of visuals, AudioSight provides a unique, immersive experience. Get started now and let the music take over!
 
+## Stretch Goals
+This app implements OAuth 2.0 code flow
